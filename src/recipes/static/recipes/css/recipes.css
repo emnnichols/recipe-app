@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+
+* {
+  background: ghostwhite;
+}
+
+/* NAVIGATION */
+
+.navigation {
+  cursor: pointer;
+  position: fixed;
+  border: none;
+  top: 20px;
+  margin: 20px 10px;
+  z-index: 1;
+}
+
+.nav-hide {
+  display: none;
+}
+
+.nav-show {
+  position: relative;
+  margin: 30px 0px;
+  margin-left: -20px;
+}
+
+/* NAVIGATION -- MENU LIST */
+
+ul {
+  list-style: none;
+}
+
+li {
+  border: solid 1px black;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* PAGE HEADER */
+
+h1 {
+  padding-top: 20px;
+  background: inherit;
+  font-family: "Homemade Apple", cursive;
+  text-align: center;
+}
+
+/* RECIPEs LIST PAGE */
+
+.recipe_list {
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+/* RECIPE DETAIL PAGE */
+
+.recipe_detail {
+  top: 15%;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.goBack {
+  position: relative;
+  top: -10px;
+  margin-left: -100%;
+  cursor: pointer;
+  border: none;
+  background: none;
+  z-index: 1;
+}
+
+.backArrow {
+  box-shadow: 0px 0px 10px 2px rgb(211, 211, 216);
+  border-radius: 50%;
+  padding: 5px 5px 5px 4px;
+  background: none;
+  transition: all 0.7s;
+}
+
+.backArrow:hover {
+  box-shadow: 0px 0px 10px 2px rgb(159, 159, 163);
+  transition: all 0.7s;
+}
+
+/* STYLING FOR EACH RECIPE CARD */
+
+.recipe_cards {
+  background: rgba(214, 219, 223, 0.3);
+  border-radius: 10px;
+  display: inline-block;
+  padding: 20px 50px;
+  min-width: 600px;
+  margin-bottom: 20px;
+}
+
+.recipe_card {
+  background: rgba(214, 219, 223, 0.3);
+  border-radius: 10px;
+  display: inline-block;
+  padding: 20px 50px;
+  min-width: 50%;
+  margin-bottom: 20px;
+}
+
+.image_mask {
+  overflow: hidden; 
+  width: 400px; 
+  height: 250px; 
+  margin-left: auto; 
+  margin-right: auto; 
+  border-radius: 20px;
+}
+
+/* RECIPE CARD INFO STYLING */
+
+.recipe_name, 
+.recipe_name a, 
+.recipe_time,
+.recipe_info {
+  font-variant: all-small-caps;
+  letter-spacing: 2px;
+  transition: all 0.7s;
+}
+
+.recipe_name,
+.recipe_name a {
+  text-decoration: none;
+  background: none;
+  color: black;
+  font-size: 30px;
+  transition: all 0.7s;
+}
+
+.recipe_name a:hover {
+  letter-spacing: 4px;
+  color: rgb(126, 151, 152);
+  transition: all 0.7s;
+}
+
+.recipe_time {
+  background: none;
+  font-style: italic;
+  font-size: 20px;
+}
+
+.recipe_info, th, td {
+  margin-top: -7%;
+  background: rgba(214, 219, 223, 0.3);
+  font-size: 20px;
+}
+
+/* FOOTER FOR LIST AND DETAIL PAGES */
+
+.footer {
+  position: fixed;
+  bottom: 5px;
+}
+
+.footer a {
+  font-style: italic;
+  text-decoration: none;
+  color: rgb(126, 151, 152);
+  transition: all 0.5s;
+}
+
+.footer a:hover {
+  color: black;
+  letter-spacing: 2px;
+}
