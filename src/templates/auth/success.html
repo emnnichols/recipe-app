@@ -9,17 +9,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/home.css' %}">
-  <title>Recipe App</title>
+  <title>Logged Out</title>
 </head>
 
 <body>
   <div class="model">
     <span class="text">
-      <span style="font-size: 50px; background: inherit; position: relative;">Welcome to the Recipe App!</span>
-      <br><br>
-      LOGIN FORM WILL GO HERE
-      <br>
-      PASSWORD FORM WILL GO HERE
+
+      <body>
+        <h1> successfully logged out! </h1>
+        <a style="background: ghostwhite;" href="{% url 'login' %}"><button> Want to log back in? </button></a>
+      </body>
     </span>
   </div>
   <div class="footer">
