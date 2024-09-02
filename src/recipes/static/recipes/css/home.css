@@ -1,11 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+
 * {
-  background: url("/static/recipes/images/main_background.jpg") 20% 0 no-repeat fixed;
-  background-size: 100%;
+  background: url("/static/recipes/images/main_background.jpg") 20% 0 repeat fixed;
+  background-size: cover;
+  background-color: ghostwhite;
 }
 
 h1 {
-  font-size: 100px;
+  font-size: 50px;
+  background: inherit;
   text-align: center;
+  font-family: "Homemade Apple", cursive;
 }
 
 .model {
@@ -14,17 +19,53 @@ h1 {
   width: 100%;
   top: 25%;
   padding: 20px;
-  font-variant: all-small-caps;
 }
 
 .model .text {
   display: inline-block;
   padding: 50px 100px;
   text-align: center;
-  background: white;
+  background: ghostwhite;
   border-radius: 20px;
   letter-spacing: 1px;
   font-size: 20px;
+}
+
+form {
+  font-variant: all-small-caps;
+  font-style: italic;
+  letter-spacing: 2px;
+  padding: 10px;
+  min-width: 500px;
+  margin: auto;
+  background: inherit;
+}
+
+form input {
+  min-width: 50%;
+  border: none;
+  background: inherit;
+  border-bottom: 2px dotted black;
+}
+
+button {
+  font-variant: all-small-caps;
+  border: none;
+  background: ghostwhite;
+  letter-spacing: 2px;
+  border-radius: 20px;
+  border: solid 1px;
+  cursor: pointer;
+  width: 50%;
+  min-width: 200px;
+  padding: 10px;
+  transition: all 0.7s;
+}
+
+button:hover {
+  background: black;
+  color: white;
+  transition: all 0.7s;
 }
 
 .footer {
