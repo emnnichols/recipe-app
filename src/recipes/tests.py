@@ -1,5 +1,6 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from .models import Recipe
+from .forms import RecipeSearchForm
 
 # Create your tests here.
 
@@ -82,3 +83,43 @@ class RecipeModelTest(TestCase):
   def test_ingredient_list(self):
     recipe = Recipe.objects.get(id=1)
     self.assertEqual(len(recipe.get_ingredient_list()), 3)
+
+class RecipeFormTest(TestCase):
+
+  def setUpTestData():
+    Recipe.objects.create(name='Tea', cooking_time=5, ingredients='tea leaves, water, sugar')
+    Recipe.objects.create(name='Lemon Rice', cooking_time=30, ingredients='lemons, rice, water')
+
+  ## TEST SEARCH FUNCTION
+  def test_search_request(self):
+    client = Client()
+
+    data = {'recipe_search': 'sugar', 'chart_type': '#1'}
+    response = client.post('/recipes/search', data)
+
+    self.assertEqual(response.status_code, 200)
+
+  def test_form_valid(self):
+    data = {'recipe_search': 'sugar', 'chart_type': '#1'}
+    response = RecipeSearchForm(data)
+
+    self.assertTrue(response.is_valid())
+  
+  def test_search_ingredient(self):
+    client = Client()
+
+    input = {'recipe_search': 'water', 'chart_type': '#1'}
+    response = client.post('/recipes/search', input)
+    data = response.content
+    
+    self.assertTrue('Tea' in data.decode())
+    self.assertTrue('Lemon Rice' in data.decode())
+
+  def test_search_recipe(self):
+    client = Client()
+
+    input = {'recipe_search': 'lemon rice', 'chart_type': '#1'}
+    response = client.post('/recipes/search', input)
+    data = response.content
+    
+    self.assertTrue('Lemon Rice' in data.decode())
