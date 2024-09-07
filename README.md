@@ -64,18 +64,30 @@ While looking at a list of recipes, users can also request more details about a 
 <summary> views </summary>
   
 ##### home
+  > Redirects user to `login` so they can be authenticated
+
+#### login_view
   > Accepts web request
 
-  > Returns the `recipes/recipes_home.html` template
+  > Authenticates form data; if user is authenticated, they are redirected to `recipes:list`
+
+  > If they are not authenticated, an error message is returned
+
+#### logout_view
+  > Accepts web request
+
+  > Returns `success.html` template to show user they have been successfully signed out
+
+  > Template also provides button back to `login` if the user wishes to log back in
 
 ##### RecipeListView
   > Class-based view that produces list view of the recipes
-  
+
   > Returns the `recipes/recipe_list.html` template
 
 ##### RecipeDetailView
   > Class-based view that produces a detailed view of the specified recipe
   
   > Returns the `recipes/recipe_detail.html` template
-> 
+
 </details>
