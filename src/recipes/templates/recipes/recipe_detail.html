@@ -18,6 +18,9 @@
     </button>
     <div id="nav" class="nav-hide">
       <ul>
+        <a href="{% url 'recipes:search' %}">
+          <li>search</li>
+        </a>
         <li>add button</li>
         <li><a href="{% url 'logout' %}">logout</a></li>
       </ul>
@@ -26,7 +29,7 @@
   <div class="recipe_detail">
     <span class="recipe_card">
       <br>
-      <a class="goBack" title="Go back" href="{% url 'recipes:list' %}">
+      <a class="goBack" title="Go back" onclick="history.back()">
         &laquo;
       </a>
       <span class="recipe_info">
