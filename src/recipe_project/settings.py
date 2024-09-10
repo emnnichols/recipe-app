@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','django-insecure-6=b-%@-)fqm-po7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'floating-stream-51121-097dca0f1bd0.herokuapp.com']
 
 # Application definition
 
@@ -82,9 +82,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# DATABASES = {
-#     'default': dj_database_url.config(default=f'sqlite:///{BASE_DIR / "db.sqlite3"}')
-# }
 
 
 # Password validation
@@ -139,5 +136,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # AUTH
 LOGIN_URL = '/login/'
 
-#Heroku: Update database configuration from $DATABASE_URL.
-DATABASES['default'] = dj_database_url.config(conn_max_age=500)
+# Heroku: Update database configuration from $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
