@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','django-insecure-6=b-%@-)fqm-po7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', 'recipe-app-python2-8b51ced6bfe8.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # recipe_project-related apps
-    'recipe-app'
+    'recipe-app',
+    'recipe-app-python2',
 ]
 
 MIDDLEWARE = [
