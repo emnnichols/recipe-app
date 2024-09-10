@@ -26,14 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','django-insecure-6=b-%@-)fqm-po7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# ALLOWED_HOSTS = [
-#   'recipe-app-python2-8b51ced6bfe8.herokuapp.com',
-#   '.herokuapp.com',
-#   'localhost',
-#   '127.0.0.1'
-# ]
-
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['whispering-dusk-98333-567ea2a8b9be.herokuapp.com']
 
 # Application definition
 
