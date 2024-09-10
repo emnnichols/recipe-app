@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','django-insecure-6=b-%@-)fqm-po7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', 'floating-stream-51121-097dca0f1bd0.herokuapp.com', 'https://floating-stream-51121-097dca0f1bd0.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '.herokuapp.com', 'floating-stream-51121-097dca0f1bd0.herokuapp.com']
 
 # Application definition
 
