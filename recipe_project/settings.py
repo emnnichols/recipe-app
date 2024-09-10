@@ -26,12 +26,14 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','django-insecure-6=b-%@-)fqm-po7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-  'recipe-app-python2-8b51ced6bfe8.herokuapp.com',
-  '.herokuapp.com',
-  'localhost',
-  '127.0.0.1'
-]
+# ALLOWED_HOSTS = [
+#   'recipe-app-python2-8b51ced6bfe8.herokuapp.com',
+#   '.herokuapp.com',
+#   'localhost',
+#   '127.0.0.1'
+# ]
+
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -43,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # recipe_project-related apps
-    'recipe-app',
+    'recipes',
+    'recipe_project',
 ]
 
 MIDDLEWARE = [
@@ -124,7 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS= [BASE_DIR, 'recipes/static']
+STATICFILES_DIRS= [BASE_DIR / 'recipes/static']
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
