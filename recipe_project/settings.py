@@ -120,10 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS= [
-  BASE_DIR / 'recipes/static',
-  BASE_DIR / 'media/recipes'
-  ]
+STATICFILES_DIRS= [os.path.join(BASE_DIR, 'recipes/static')]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -141,3 +138,5 @@ LOGIN_URL = '/login/'
 # Heroku: Update database configuration from $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
