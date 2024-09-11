@@ -45,29 +45,39 @@ def get_chart(chart_type, data, search):
   ing_list = []
   ing_num = []
 
+  limited_num = []
+  limited_ing = []
+  
   for list in data['ingredients']:
     data_list = list.split(', ')
     for ing in data_list:
       if ing.title() not in ing_list:
         ing_list.append(ing.title())
-  
+
   for ing in ing_list:
     num_recipe = len(Recipe.objects.filter(ingredients__icontains=ing))
     ing_num.append(num_recipe)
+    if ((num_recipe / len(ing_num)) * 100) >= 25:
+      limited_num.append(num_recipe)
+      limited_ing.append(ing.title())
 
   #select chart_type based on user input from the form
   if chart_type == '#1':
       #plot horizontal bar chart based on ingredient on y-axis and 
       # how many recipes they are found in on x-axis
-      plt.barh(ing_list, ing_num, color=['#7e9798'])
+      if search == '':
+        plt.barh(limited_ing, limited_num, color=['#7e9798'])
+      else:
+        plt.barh(ing_list, ing_num, color=['#7e9798'])
       plt.xlabel('Found in # of Recipes')
       plt.xlim(right=total_recipes)
 
   elif chart_type == '#2':
       #generate pie chart based percentage of recipes found
-      if search == '':
-        labels = ing_list
-        sizes = ing_num
+      if search == '':      
+        labels = limited_ing
+        sizes = limited_num
+
         plt.pie(sizes, labels=labels, autopct='%1.1f%%', colors=['#7e9798', '#d6dbdf', '#B6BBB6', '#BBC0C3', '#DFDAD6'])
       else:
         labels= f'Recipes with {search.title()}', 'Total Recipes'
