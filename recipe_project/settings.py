@@ -127,6 +127,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 if DEBUG == True:
   MEDIA_URL = '/media/'
+
 elif DEBUG == False:
   AWS_ACCESS_KEY_ID = os.environ.get('BUCKETEER_AWS_ACCESS_KEY_ID')
   AWS_SECRET_ACCESS_KEY = os.environ.get('BUCKETEER_AWS_SECRET_ACCESS_KEY')
@@ -134,14 +135,15 @@ elif DEBUG == False:
   AWS_S3_REGION_NAME = os.environ.get('BUCKETEER_AWS_REGION')
   AWS_DEFAULT_ACL = None
   AWS_S3_SIGNATURE_VERSION = os.environ.get('S3_SIGNATURE_VERSION', default='s3v4')
-  AWS_S3_ENDPOINT_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+  AWS_S3_ENDPOINT_URL = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
   AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 
-  MEDIA_LOCATION = 'media/public'
-  MEDIA_DEFAULT_ACL = 'public-read'
+  AWS_S3_URL_PROTOCOL = 'https'
+  AWS_S3_USE_SSL = True
+  AWS_S3_VERIFY = True
 
-  MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{MEDIA_LOCATION}'
-  DEFAULT_FILE_STORAGE = 'rn_api.utils.storage_backends.PublicMediaStorage'
+  MEDIA_URL = f'{AWS_S3_URL_PROTOCOL}://{AWS_S3_ENDPOINT_URL}/media/'
+  DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3Boto3Storage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
