@@ -1,0 +1,93 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/search.css' %}">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1><a href="{% url 'recipes:list' %}">About</a></h1>
+  <br>
+  <div class="navigation">
+    <button onclick="showMenu()" class="navigation">
+      <img src="{% static 'recipes/images/menu.png' %}" width="20px" />
+    </button>
+    <div id="nav" class="hide">
+      <ul>
+        <a href="{% url 'recipes:list' %}">
+          <li>home</li>
+        </a>
+        <a href="{% url 'recipes:search' %}">
+          <li>search</li>
+        </a>
+        <a href="{% url 'recipes:add' %}">
+          <li>add recipe</li>
+        </a>
+        <a href="{% url 'logout' %}">
+          <li>logout</li>
+        </a>
+      </ul>
+    </div>
+  </div>
+  <div class="about_card">
+    <div class="about_info">
+      Hello! I'm Emily Nichols, a full-stack developer who
+      <br>is passionate about building visually-appealing
+      <br>and interactive web applications.
+      <br><br>
+      Interested in seeing more of my work?
+      <br><br>
+      <a href="http://emilynnichols.com" target="_blank">
+        <button>portfolio</button>
+      </a>
+    </div>
+    <br><br>
+    <div class="about_table">
+      <table cellpadding="0" cellspacing="0">
+        <tr>
+          <th>
+            <span style="border-bottom: 1px dotted  black;">contact me</span>
+          </th>
+          <th>
+            <span style="border-bottom: 1px dotted  black;">find me on</span>
+          </th>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="mailto:emnnichols@outlook.com">email</a></td>
+          <td>
+            <a href="https://github.com/emnnichols" target="_blank">github</a>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><a href="tel:17578488210">phone</a></td>
+          <td>
+            <a href="https://www.linkedin.com/in/emily-nichols-724931296/" target="_blank">
+              linkedin
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <footer class="footer" style="color: rgb(162, 167, 171);">
+    menu icon by
+    <a
+      href="https://www.freepik.com/icon/more_10073240#fromView=search&page=1&position=14&uuid=d9dbb496-e623-46df-843d-0bf12bb9946b">
+      yaicon
+    </a>
+  </footer>
+</body>
+<script src="{% static 'recipes/js/navigation.js' %}"></script>
+
+</html>
