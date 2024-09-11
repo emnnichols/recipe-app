@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     # recipe_project-related apps
     'recipes'
 ]
@@ -125,6 +126,22 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+if DEBUG == False:
+  AWS_ACCESS_KEY_ID = os.environ.get('BUCKETEER_AWS_ACCESS_KEY_ID')
+  AWS_SECRET_ACCESS_KEY = os.environ.get('BUCKETEER_AWS_SECRET_ACCESS_KEY')
+  AWS_STORAGE_BUCKET_NAME = os.environ.get('BUCKETEER_BUCKET_NAME')
+  AWS_S3_REGION_NAME = os.environ.get('BUCKETEER_AWS_REGION')
+  AWS_DEFAULT_ACL = None
+  AWS_S3_SIGNATURE_VERSION = os.environ.get('S3_SIGNATURE_VERSION', default='s3v4')
+  AWS_S3_ENDPOINT_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+  AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+
+  MEDIA_LOCATION = 'media'
+  MEDIA_DEFAULT_ACL = 'public-read'
+
+  MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{MEDIA_LOCATION}'
+  DEFAULT_FILE_STORAGE = 'rn_api.utils.storage_backends.MediaStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
