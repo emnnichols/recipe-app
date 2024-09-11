@@ -69,6 +69,7 @@ def update_recipe(request, pk):
         form = RecipeForm(request.POST, request.FILES, instance=recipe)
         if form.is_valid():
             form.save()
+            messages.info(request, 'Recipe updated successfully!')
             return redirect('recipes:detail', recipe.pk)
     else:
         # If not a POST request, instantiate the form with the existing recipe

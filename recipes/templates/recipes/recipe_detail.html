@@ -11,6 +11,16 @@
 </head>
 
 <body>
+  {% if messages %}
+  {% for message in messages %}
+  <div style="text-align: center;" class="recipe_time" id="message">
+    {{message}}
+    <button onclick="dismiss()">
+      dismiss
+    </button>
+  </div>
+  {% endfor %}
+  {% endif %}
   <h1>{{object.name.lower}}
     <br>
     <button id="update-button" onclick="updateDialog()">update</button>
