@@ -74,6 +74,10 @@ a {
   color: black;
 }
 
+#message {
+  margin-bottom: -31px;
+}
+
 #message button {
   border: none;
   cursor: pointer;
@@ -146,11 +150,20 @@ a {
 
 .image_mask {
   overflow: hidden; 
-  width: 400px; 
+  width: 350px; 
   height: 250px; 
   margin-left: auto; 
   margin-right: auto; 
   border-radius: 20px;
+}
+
+.helper {
+  display: inline-block;
+  min-width: 350px;
+  max-width: 100%;
+  min-height: 250px;
+  max-height: 100%;
+  vertical-align: middle;
 }
 
 .recipe_cards {
@@ -196,6 +209,8 @@ a {
   border: 1px solid red;
 }
 
+/* UPDATE & DELETE FORM STYLES */
+
 form input, form textarea {
   min-width: 200px;
   border: 1px solid black;
@@ -233,7 +248,7 @@ form button:hover, h1 button:hover {
   font-style: italic;
 }
 
-/* RECIPE CARD INFO STYLING */
+/* RECIPE DETAIL CARD INFO STYLING */
 
 .recipe_name, 
 .recipe_name a, 
