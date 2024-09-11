@@ -16,7 +16,7 @@
   z-index: 1;
 }
 
-.nav-hide {
+.hide {
   display: none;
 }
 
@@ -74,6 +74,22 @@ a {
   color: black;
 }
 
+#message button {
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-variant: all-small-caps;
+  transition: all 0.5s;
+}
+
+#message button:hover {
+  font-style: italic;
+  letter-spacing: 3px;
+  border: none;
+  border-radius: 20px;
+}
+
 /* RECIPE LIST PAGE */
 
 .recipe_list {
@@ -119,7 +135,7 @@ a {
   margin-bottom: 20px;
 }
 
-.recipe_card {
+#recipe_card {
   background: rgba(214, 219, 223, 0.3);
   border-radius: 10px;
   display: inline-block;
@@ -135,6 +151,86 @@ a {
   margin-left: auto; 
   margin-right: auto; 
   border-radius: 20px;
+}
+
+.recipe_cards {
+  background: rgba(214, 219, 223, 0.3);
+  border-radius: 10px;
+  display: inline-block;
+  padding: 20px 50px;
+  min-width: 600px;
+  margin-bottom: 20px;
+}
+
+.update_detail, .delete_detail {
+  background: none;
+  position: relative;
+  text-align: center;
+  top: 50px;
+  width: 100%;
+}
+.update_card, .delete_card {
+  background: rgb(214, 219, 223);
+  border-radius: 10px;
+  display: inline-block;
+  padding: 50px 50px 30px 50px;
+  z-index: 1;
+}
+
+.update_card form,  .update_card span, .update_card input#id_pic, .update_card a {
+  font-variant: all-small-caps;
+  font-style: italic;
+  background: none;
+  border: none;
+}
+
+.update_card tr, .delete_detail form {
+  background: rgb(214, 219, 223);
+}
+
+.recipe_detail, .update_detail, .delete_detail {
+  margin-top: 50px;
+}
+
+.delete_card {
+  border: 1px solid red;
+}
+
+form input, form textarea {
+  min-width: 200px;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+form button, h1 button {
+  font-variant: all-small-caps;
+  border: none;
+  background: ghostwhite;
+  letter-spacing: 2px;
+  border-radius: 20px;
+  border: solid 1px;
+  cursor: pointer;
+  width: 50%;
+  min-width: 200px;
+  padding: 10px;
+  transition: all 0.7s;
+}
+
+button {
+  max-width: 200px;
+}
+
+form button:hover, h1 button:hover {
+  background: black;
+  color: white;
+  transition: all 0.7s;
+}
+
+.danger:hover {
+  background: red;
+  font-style: italic;
 }
 
 /* RECIPE CARD INFO STYLING */
