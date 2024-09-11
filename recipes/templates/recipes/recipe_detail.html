@@ -11,25 +11,39 @@
 </head>
 
 <body>
-  <h1>{{object.name.lower}}</h1>
+  <h1>{{object.name.lower}}
+    <br>
+    <button id="update-button" onclick="updateDialog()">update</button>
+    <button id="delete-button" onclick="deleteDialog()">delete</button>
+  </h1>
   <div class="navigation">
     <button onclick="showMenu()" class="navigation">
       <img src="{% static 'recipes/images/menu.png' %}" width="20px" />
     </button>
-    <div id="nav" class="nav-hide">
+    <div id="nav" class="hide">
       <ul>
+        <a href="{% url 'recipes:list' %}">
+          <li>home</li>
+        </a>
         <a href="{% url 'recipes:search' %}">
           <li>search</li>
         </a>
-        <li>add button</li>
-        <li><a href="{% url 'logout' %}">logout</a></li>
+        <a href="{% url 'recipes:add' %}">
+          <li>add recipe</li>
+        </a>
+        <a href="{% url 'recipes:about' %}">
+          <li>about</li>
+        </a>
+        <a href="{% url 'logout' %}">
+          <li>logout</li>
+        </a>
       </ul>
     </div>
   </div>
-  <div class="recipe_detail">
-    <span class="recipe_card">
+  <div class="recipe_detail" onclick="closeDialog()">
+    <span id="recipe_card">
       <br>
-      <a class="goBack" title="Go back" onclick="history.back()">
+      <a class="goBack" title="Go back" href="{% url 'recipes:list' %}">
         &laquo;
       </a>
       <span class="recipe_info">
@@ -71,6 +85,69 @@
       <div class="image_mask">
         <img src="{{object.pic.url}}" width="400" height="auto" style="margin-top: -10px; min-height: 280px;" />
       </div>
+    </span>
+  </div>
+  <div class="update_detail">
+    <span id="update_card" class="hide">
+      <span class="recipe_info">
+        <form action="{% url 'recipes:update' object.id %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <table class="recipe_info" style="background: none; text-align: left; margin-left: auto; margin-right: auto;"
+            cellpadding="5" cellspacing="5">
+            <tr>
+              <th style="font-style: italic; border-top: dotted 1px black;">
+                &nbsp;Recipe Name
+              </th>
+              <td>
+                {{form.name}}
+              </td>
+            </tr>
+            <tr>
+              <th style="font-style: italic;">
+                &nbsp;cooking time
+              </th>
+              <td>
+                {{form.cooking_time}}
+              </td>
+            </tr>
+            <tr>
+              <th style="font-style: italic; border-top: dotted 1px black;">
+                &nbsp;Ingredients
+              </th>
+              <td>
+                {{form.ingredients}}
+              </td>
+            </tr>
+          </table>
+          <span>
+            {{form.pic}}
+            <br><br>
+            <button type="submit">
+              UPDATE RECIPE
+            </button>
+            <button type="button" onclick="closeUpdate()">
+              close
+            </button>
+          </span>
+        </form>
+      </span>
+    </span>
+  </div>
+  <div class="delete_detail">
+    <span id="delete_card" class="hide">
+      <span class="recipe_info">
+        <form action="{% url 'recipes:delete' object.id %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          Delete {{object.name}} from your recipes?
+          <br><br>
+          <button type="submit" class="danger">
+            Yes
+          </button>
+          <button type="button" onclick="closeDelete()">
+            No
+          </button>
+        </form>
+      </span>
     </span>
   </div>
   <footer class="footer" style="color: rgb(162, 167, 171);">
