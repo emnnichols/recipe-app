@@ -124,10 +124,10 @@ STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'recipes/static')]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
-if DEBUG == False:
+if DEBUG == True:
+  MEDIA_URL = '/media/'
+elif DEBUG == False:
   AWS_ACCESS_KEY_ID = os.environ.get('BUCKETEER_AWS_ACCESS_KEY_ID')
   AWS_SECRET_ACCESS_KEY = os.environ.get('BUCKETEER_AWS_SECRET_ACCESS_KEY')
   AWS_STORAGE_BUCKET_NAME = os.environ.get('BUCKETEER_BUCKET_NAME')
@@ -137,11 +137,11 @@ if DEBUG == False:
   AWS_S3_ENDPOINT_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
   AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 
-  MEDIA_LOCATION = 'media'
+  MEDIA_LOCATION = 'media/public'
   MEDIA_DEFAULT_ACL = 'public-read'
 
   MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{MEDIA_LOCATION}'
-  DEFAULT_FILE_STORAGE = 'rn_api.utils.storage_backends.MediaStorage'
+  DEFAULT_FILE_STORAGE = 'rn_api.utils.storage_backends.PublicMediaStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
