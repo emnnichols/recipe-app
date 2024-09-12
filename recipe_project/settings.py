@@ -128,22 +128,26 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-## AWS CREDENTIALS FROM BUCKETEER
-AWS_ACCESS_KEY_ID = config('BUCKETEER_AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = config('BUCKETEER_AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = config('BUCKETEER_BUCKET_NAME')
-AWS_S3_REGION_NAME = config('BUCKETEER_AWS_REGION')
-AWS_DEFAULT_ACL = None
-AWS_S3_SIGNATURE_VERSION = config('S3_SIGNATURE_VERSION', default='s3v4')
-AWS_S3_ENDPOINT_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+if DEBUG == True:
+  MEDIA_URL = '/media/'
+  
+if DEBUG == False:
+  ## AWS CREDENTIALS FROM BUCKETEER
+  AWS_ACCESS_KEY_ID = config('BUCKETEER_AWS_ACCESS_KEY_ID')
+  AWS_SECRET_ACCESS_KEY = config('BUCKETEER_AWS_SECRET_ACCESS_KEY')
+  AWS_STORAGE_BUCKET_NAME = config('BUCKETEER_BUCKET_NAME')
+  AWS_S3_REGION_NAME = config('BUCKETEER_AWS_REGION')
+  AWS_DEFAULT_ACL = None
+  AWS_S3_SIGNATURE_VERSION = config('S3_SIGNATURE_VERSION', default='s3v4')
+  AWS_S3_ENDPOINT_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+  AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 
-AWS_S3_URL_PROTOCOL = 'https'
-AWS_S3_USE_SSL = True
-AWS_S3_VERIFY = True
+  AWS_S3_URL_PROTOCOL = 'https'
+  AWS_S3_USE_SSL = True
+  AWS_S3_VERIFY = True
 
-MEDIA_URL = f'{AWS_S3_URL_PROTOCOL}://{AWS_S3_ENDPOINT_URL}/media/'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+  MEDIA_URL = f'{AWS_S3_URL_PROTOCOL}://{AWS_S3_ENDPOINT_URL}/media/'
+  DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

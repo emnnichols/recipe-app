@@ -1,4 +1,5 @@
 from django.test import TestCase, Client
+from django.contrib.auth.models import User
 from .models import Recipe
 from .forms import RecipeSearchForm
 
@@ -90,9 +91,12 @@ class RecipeFormTest(TestCase):
     Recipe.objects.create(name='Tea', cooking_time=5, ingredients='tea leaves, water, sugar')
     Recipe.objects.create(name='Lemon Rice', cooking_time=30, ingredients='lemons, rice, water')
 
+    User.objects.create_user(username='testuser', password='testpassword')
+
   ## TEST SEARCH FUNCTION
   def test_search_request(self):
     client = Client()
+    client.login(username='testuser', password='testpassword')
 
     data = {'recipe_search': 'sugar', 'chart_type': '#1'}
     response = client.post('/recipes/search', data)
@@ -107,6 +111,7 @@ class RecipeFormTest(TestCase):
   
   def test_search_ingredient(self):
     client = Client()
+    client.login(username='testuser', password='testpassword')
 
     input = {'recipe_search': 'water', 'chart_type': '#1'}
     response = client.post('/recipes/search', input)
@@ -117,6 +122,7 @@ class RecipeFormTest(TestCase):
 
   def test_search_recipe(self):
     client = Client()
+    client.login(username='testuser', password='testpassword')
 
     input = {'recipe_search': 'lemon rice', 'chart_type': '#1'}
     response = client.post('/recipes/search', input)
