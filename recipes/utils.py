@@ -82,13 +82,16 @@ def get_chart(chart_type, data, search):
       else:
         labels= f'Recipes with {search.title()}', 'Total Recipes'
         sizes = [recipes_found, total_recipes]
+        
         plt.pie(sizes, labels=labels, autopct='%1.1f%%', colors=['#7e9798', '#d6dbdf'])
 
   elif chart_type == '#3':
       #plot line chart based on ingredient on x-axis and 
       # how many recipes they are found in on y-axis
-
-      plt.plot(ing_list, ing_num, color='#7e9798', linewidth=2)
+      if search == '':      
+        plt.plot(limited_ing, limited_num, color='#7e9798', linewidth=2)
+      else:
+        plt.plot(ing_list, ing_num, color='#7e9798', linewidth=2)
       plt.grid(True, linewidth=0.5)
       plt.xticks(rotation=25)
       plt.yticks(range(total_recipes+1))
