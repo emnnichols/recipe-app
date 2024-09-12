@@ -4,6 +4,10 @@ The recipe app is a web application built with Python using the Django framework
 Recipe app allows users to sign up, login, and logout; while using the application, users can create, modify, and search recipes. 
 While looking at a list of recipes, users can also request more details about a recipe -- such as name, cooking time, ingredient list, and difficulty (which is automatically calculated by cooking time and number of ingredients)
 
+## Static and Media files
+- Utilizes `whitenoise` to store static files such as css, js, and static image files.
+- Uses `django-storages` and the Heroku add-on `bucketeer` to manage user-uploaded files (e.g. images uploaded for a recipe)
+
 ## Apps
 ### recipes
 
@@ -58,6 +62,31 @@ While looking at a list of recipes, users can also request more details about a 
 ##### `test_ingredient_list`
   > calls `get_ingredient_list()` on test recipe to get length of ingredient list and compares to expected value
 
+#### `RecipeFormTest` creates the following test data:
+  ```
+  name = 'Tea'
+  cooking_time = 5
+  ingredients = 'tea leaves, water, sugar'
+
+  name = 'Lemon Rice'
+  cooking_time = 30
+  ingredients = 'lemons, rice, water'
+  ```
+
+#### `RecipeFormTest` includes the following tests:
+
+##### `test_search_request`
+  > posts search data to `/recipes/search`, expects a status code of 200
+
+##### `test_form_valid`
+  > passes search data to `RecipeSearchForm()` and checks `is_valid()`
+
+##### `test_search_ingredient`
+  > posts ingredient search data to `/recipes/search` and decodes response to check if both recipes are present
+
+##### `test_search_recipe`
+  > posts recipe name search data to `/recipes/search` and decodes response to check if recipe is present
+
 </details>
 
 <details>
@@ -79,6 +108,41 @@ While looking at a list of recipes, users can also request more details about a 
   > Returns `success.html` template to show user they have been successfully signed out
 
   > Template also provides button back to `login` if the user wishes to log back in
+
+#### about_page
+  > Accepts web request
+
+  > Returns `recipes/about.html`
+
+#### delete_recipe
+  > Accepts web request and primary key
+
+  > Gets recipe object based on primary key then deletes object
+
+  > Redirects user to List view after deletion
+
+#### update_recipe
+  > Accepts web request and primary key
+
+  > Gets recipe object based on primary key then if method is POST, form data is gathered
+
+  > If form is valid, form is saved and the recipe is updated
+
+#### add_recipe
+  > Accepts web request and primary key
+
+  > Gets recipe object based on primary key then if method is POST, form data is gathered
+
+  > If form is valid, form is saved and the recipe is created
+
+#### get_queryset
+  > Accepts web request
+
+  > Gets search term and selected chart type from submitted form
+
+  > Filters recipes based on search term then created pandas DataFrame from values
+
+  > Calls `get_chart()` from `utils.py` to generate chart based on DataFrame
 
 ##### RecipeListView
   > Class-based view that produces list view of the recipes
